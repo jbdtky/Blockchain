@@ -1,6 +1,7 @@
 #include "transaction.h"
 
 #include <stdio.h>
+#include <stdlib.h>
 
 void print_transaction(const struct Transaction* transaction) {
   printf("Transaction[fromAccountId=%s, toAccountId=%s, op=%u, amount=%u, timestamp=%u]\n", 
@@ -13,4 +14,9 @@ void print_transaction(const struct Transaction* transaction) {
 
 int verify_transaction(const struct Transaction* transaction) {
   return 0;
+}
+
+char* serialize_transaction(const struct Transaction* transaction) {
+  char* seralized_transaction = (char*) malloc(sizeof(struct Transaction));
+  return "test";
 }

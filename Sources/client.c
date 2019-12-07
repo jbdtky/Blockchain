@@ -18,7 +18,8 @@ int main(int argc, char const *argv[]) {
     2
   };
 
-  Block:validate_block(&block);
+  validate_block(&block);
+  store_block(&block);
 
   return 0;
 }

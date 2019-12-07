@@ -10,3 +10,4 @@ struct Transaction {
 
 void print_transaction(const struct Transaction* transaction);
 int verify_transaction(const struct Transaction* transaction);
+char* serialize_transaction(const struct Transaction* transaction);
