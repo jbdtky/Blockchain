@@ -11,6 +11,7 @@ int main(int argc, char const *argv[]) {
   txs[1] = tx2;
 
   struct Block block = {
+    "",
     0,
     0,
     "",
@@ -20,6 +21,8 @@ int main(int argc, char const *argv[]) {
 
   validate_block(&block);
   store_block(&block);
+
+  free(txs);
 
   return 0;
 }

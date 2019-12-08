@@ -5,10 +5,11 @@
 #include "block.h"
 
 void print_block(const struct Block* block) {
-  printf("Block[id=%u, timestamp=%u, merkle_hash=%s, transactions_length=%u]\n", 
+  printf("Block[id=%u, timestamp=%u, block_hash=%s, previous_block_hash=%s, transactions_length=%u]\n", 
   block->id, 
   block->timestamp, 
-  block->merkle_hash, 
+  block->block_hash, 
+  block->previous_block_hash, 
   block->transactions_length);
 }
 
@@ -31,18 +32,22 @@ char* serialize_block(const struct Block* block) {
 }
 
 void store_block(const struct Block* block) {
-  char* id_str = (char*) malloc(sizeof(unsigned int));
+  char* id_str = (char*) malloc(sizeof(unsigned int)); // m
   sprintf(id_str, "%u", block->id);
   
-  char* filename = (char*) malloc((strlen("block_")+strlen(id_str))*sizeof(char));
+  char* filename = (char*) malloc((strlen("block_")+strlen(id_str))*sizeof(char)); // m
   strcat(filename, "block");
   strcat(filename, id_str);
+
+  free(id_str); // f
 
   char* serialized_block = serialize_block(block);
   printf("Serialize block[%u]=[%s]\n", block->id, serialized_block);
 
   FILE* file = fopen(filename, "w");
   printf("Open the file[%s]\n", filename);
+
+  free(filename); // f
 
   printf("Write block[%u] in the file[%s]\n", block->id, filename);
   fprintf(file, "%s", serialized_block);

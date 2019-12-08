@@ -2,6 +2,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 void print_transaction(const struct Transaction* transaction) {
   printf("Transaction[fromAccountId=%s, toAccountId=%s, op=%u, amount=%u, timestamp=%u]\n", 
@@ -18,5 +19,6 @@ int verify_transaction(const struct Transaction* transaction) {
 
 char* serialize_transaction(const struct Transaction* transaction) {
   char* seralized_transaction = (char*) malloc(sizeof(struct Transaction));
-  return "test";
+  strcpy(seralized_transaction, "test"); // TODO: Remove it
+  return seralized_transaction;
 }
